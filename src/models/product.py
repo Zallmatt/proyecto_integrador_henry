@@ -1,17 +1,50 @@
 class Product:
-    def __init__(self, product_id, name, price, category_id, product_class, modify_time, resistant, is_allergic, vitality_days):
-        self.product_id = product_id
-        self.name = name
-        self.price = price
-        self.category_id = category_id
-        self.product_class = product_class
-        self.modify_time = modify_time
-        self.resistant = resistant
-        self.is_allergic = is_allergic
-        self.vitality_days = vitality_days
+    def __init__(self, product_id, product_name, price, category_id, class_type, modify_time, resistant, is_allergic, vitality_days):
+        self._product_id = product_id
+        self._product_name = product_name
+        self._price = price
+        self._category_id = category_id
+        self._class_type = class_type
+        self._modify_time = modify_time
+        self._resistant = resistant
+        self._is_allergic = is_allergic
+        self._vitality_days = vitality_days
 
-    def is_perishable(self):
-        return self.vitality_days > 0
+    @property
+    def product_id(self):
+        return self._product_id
 
-    def __str__(self):
-        return f"{self.name} (${self.price})"
+    @property
+    def product_name(self):
+        return self._product_name
+
+    @property
+    def price(self):
+        return self._price
+
+    @property
+    def category_id(self):
+        return self._category_id
+
+    @property
+    def class_type(self):
+        return self._class_type
+
+    @property
+    def modify_time(self):
+        return self._modify_time
+
+    @property
+    def resistant(self):
+        return self._resistant
+
+    @property
+    def is_allergic(self):
+        return self._is_allergic
+
+    @property
+    def vitality_days(self):
+        return self._vitality_days
+
+    def precio_final(self):
+        return round(self.price, 2)

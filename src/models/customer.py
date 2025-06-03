@@ -1,14 +1,35 @@
 class Customer:
     def __init__(self, customer_id, first_name, middle_initial, last_name, city_id, address):
-        self.customer_id = customer_id
-        self.first_name = first_name
-        self.middle_initial = middle_initial
-        self.last_name = last_name
-        self.city_id = city_id
-        self.address = address
+        self._customer_id = customer_id
+        self._first_name = first_name
+        self._middle_initial = middle_initial
+        self._last_name = last_name
+        self._city_id = city_id
+        self._address = address
 
-    def full_name(self):
+    @property
+    def customer_id(self):
+        return self._customer_id
+
+    @property
+    def first_name(self):
+        return self._first_name
+
+    @property
+    def middle_initial(self):
+        return self._middle_initial
+
+    @property
+    def last_name(self):
+        return self._last_name
+
+    @property
+    def city_id(self):
+        return self._city_id
+
+    @property
+    def address(self):
+        return self._address
+
+    def nombre_completo(self):
         return f"{self.first_name} {self.middle_initial}. {self.last_name}"
-
-    def __str__(self):
-        return f"{self.full_name()} - {self.address}"

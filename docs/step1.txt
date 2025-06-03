@@ -1,0 +1,36 @@
+
+PROYECTO INTEGRADOR - SISTEMA DE ANÁLISIS DE VENTAS
+====================================================
+
+¿Qué se hizo?
+--------------------
+Se desarrolló un sistema profesional de análisis de datos de ventas para una empresa con múltiples sucursales, simulando un entorno real de trabajo para un ingeniero de datos junior.
+
+Se cumplieron los siguientes pasos:
+1. Preparación del entorno virtual (venv) y requirements.txt.
+2. Organización del proyecto con estructura profesional de carpetas: data/, src/, sql/, tests/.
+3. Carga de datos a una base MySQL utilizando LOAD DATA INFILE y script SQL ("load_data.sql").
+4. Modelado en Python aplicando Programación Orientada a Objetos (POO), con clases para cada entidad del sistema.
+5. Implementación de pruebas unitarias usando pytest (PI5).
+6. Documentación técnica y justificación de decisiones.
+
+¿Cómo está organizado el proyecto?
+--------------------------------------
+* "data/": contiene los archivos CSV originales.
+* "sql/": contiene el script "load_data.sql" que crea la base de datos y carga los datos.
+* "src/models/": clases Python por entidad, usando encapsulamiento, constructores y métodos personalizados.
+* "tests/": pruebas unitarias con pytest para validar funcionalidad de clases.
+* README.md: documentación resumen del proyecto.
+* .env, .gitignore, requirements.txt: archivos auxiliares.
+
+Justificación técnica
+--------------------------
+- Se aplicó POO con buenas prácticas: atributos encapsulados ("self._atributo"), uso de "@property", métodos útiles para análisis (ej: "precio_final", "nombre_completo", "total_con_descuento").
+- Las clases se basaron directamente en la estructura real de los CSV para asegurar fidelidad al modelo de datos.
+- Se utilizó "LOAD DATA INFILE" para una carga eficiente de los ".csv" hacia MySQL.
+- Se creó al menos una prueba unitaria con pytest para validar lógica de negocio.
+- La estructura permite escalar fácilmente el sistema a consultas SQL, visualizaciones o integraciones con otras herramientas de análisis o BI.
+
+Entrega
+------------
+Todo está listo para ser subido a un repositorio: código fuente, estructura del proyecto, SQL, pruebas y documentación.

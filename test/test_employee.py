@@ -1,14 +1,8 @@
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))  # Busca en el directorio padre
 from src.models.employee import Employee
 
-def test_employee_full_name():
-    employee = Employee(
-        employee_id=1,
-        first_name="Juan",
-        middle_initial="P",
-        last_name="Lopez",
-        birth_date="1980-01-01",
-        gender="M",
-        city_id=5,
-        hire_date="2010-01-01"
-    )
-    assert employee.full_name() == "Juan P. Lopez"
+def test_antiguedad():
+    empleado = Employee(1, "Lucas", "A", "Pare", "1990-05-15", "M", 1, "2020-01-01")
+    assert empleado.antiguedad() == "Empleado desde 2020"

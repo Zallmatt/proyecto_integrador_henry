@@ -1,82 +1,71 @@
-# 🛒 Proyecto Integrador - Análisis de Ventas para Supermercados
+
+# 🛠 Proyecto Integrador - Sistema de Análisis de Ventas
+
+Este proyecto simula el trabajo de un ingeniero de datos junior que se une a una startup para desarrollar un sistema robusto de análisis de ventas a partir de archivos CSV y una base de datos relacional.
+
+---
 
 ## ✅ ¿Qué se hizo?
 
-Este proyecto simula el trabajo de un ingeniero de datos junior en una empresa de supermercados. Se desarrolló un sistema completo para:
-
-- Modelar entidades clave del negocio usando Programación Orientada a Objetos (POO)
-- Cargar archivos `.csv` con datos reales
-- Crear e insertar datos en una base de datos MySQL
-- Aplicar principios de diseño profesional, como separación por capas y pruebas unitarias
-- Realizar la carga desde Python usando `pandas` y `SQLAlchemy`
-- Implementar pruebas unitarias con `pytest`
+- Se creó un entorno virtual y archivo `requirements.txt`.
+- Se diseñó una estructura profesional de carpetas (`src/`, `data/`, `sql/`, `tests/`).
+- Se creó la base de datos y tablas con `load_data.sql`.
+- Se cargaron archivos `.csv` a MySQL utilizando `LOAD DATA INFILE`.
+- Se modelaron todas las entidades del sistema usando **POO en Python**, aplicando:
+  - Encapsulamiento
+  - Constructores
+  - Métodos relevantes para el negocio
+- Se implementó una **prueba unitaria con `pytest`** para validar funcionalidad.
 
 ---
 
-## 📁 Organización del proyecto
+## 🗂 Estructura del proyecto
 
 ```
-sales_analytics_project/
-├── data/                 # Archivos .csv (productos, ventas, etc.)
-├── sql/                  # Scripts SQL (creación y carga de tablas)
-├── src/
-│   ├── models/           # Clases POO (Product, Customer, etc.)
-│   └── services/         # Carga de datos, conexión DB, inserción
-├── tests/                # Pruebas unitarias con pytest
+proyecto_integrador/
 │
-├── main.py               # Script principal de ejecución
-├── .env                  # Credenciales de conexión MySQL
-├── .gitignore            # Ignorar venv, __pycache__, .env
-├── requirements.txt      # Dependencias
-└── README.md             # Documentación del proyecto
+├── data/               # Archivos CSV
+├── sql/                # Script SQL para creación y carga de tablas
+├── src/
+│   └── models/         # Clases Python por entidad (POO)
+├── tests/              # Pruebas unitarias (pytest)
+├── requirements.txt    # Dependencias del entorno
+├── README.md           # Documentación principal
+├── .gitignore
+└── .env                # Variables sensibles (no versionadas)
 ```
 
 ---
 
-## ⚙️ Justificación técnica
+## 🧠 Justificación técnica
 
-- **POO**: Se crearon clases por entidad del negocio para encapsular lógica como `is_perishable()` o `full_name()`.
-- **Carga de datos**: Se usó `pandas` para leer `.csv` y transformar en objetos Python.
-- **Base de datos relacional**: MySQL para almacenar los datos estructurados.
-- **SQLAlchemy + PyMySQL**: Para facilitar la conexión e inserción sin escribir sentencias SQL manuales.
-- **.env**: Uso de variables de entorno para ocultar credenciales.
-- **pytest**: Se escribieron pruebas unitarias para asegurar la funcionalidad de clases clave.
-- **Escalabilidad**: El sistema está modularizado y preparado para aplicar transformaciones, validaciones, ETLs o reporting.
+- Uso de **clases por entidad** directamente mapeadas a los CSV.
+- Métodos como `precio_final()`, `nombre_completo()`, `total_con_descuento()` reflejan reglas del negocio.
+- Estructura escalable que permite incorporar análisis avanzados, consultas SQL complejas, visualización de datos o dashboards.
+- Uso de `pytest` para asegurar funcionamiento correcto de la lógica.
 
 ---
 
 ## 🚀 Cómo ejecutar
 
-1. Crear entorno virtual y activar:
+1. Clonar el repositorio y navegar al proyecto.
+2. Crear y activar un entorno virtual:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # o venv\Scripts\activate en Windows
+   ```
+3. Instalar dependencias:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Cargar los datos desde `load_data.sql` usando MySQL Workbench.
+5. Ejecutar los tests:
+   ```bash
+   pytest
+   ```
 
-```bash
-python -m venv venv
-source venv/bin/activate  # o venv\Scripts\activate en Windows
-```
+---
 
-2. Instalar dependencias:
+## 📬 Autor
 
-```bash
-pip install -r requirements.txt
-```
-
-3. Configurar `.env`:
-
-```env
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=tu_contraseña
-DB_NAME=grocery_sales
-```
-
-4. Ejecutar el sistema:
-
-```bash
-python main.py
-```
-
-5. Ejecutar pruebas:
-
-```bash
-pytest
-```
+Proyecto desarrollado en el marco del bootcamp Henry | Data Engineering.
