@@ -8,41 +8,61 @@ Este proyecto simula el trabajo de un ingeniero de datos junior que se une a una
 ## ✅ ¿Qué se hizo?
 
 - Se creó un entorno virtual y archivo `requirements.txt`.
-- Se diseñó una estructura profesional de carpetas (`src/`, `data/`, `sql/`, `tests/`).
+- Se diseñó una estructura profesional de carpetas (`src/`, `data/`, `sql/`, `tests/`, `docs/`).
 - Se creó la base de datos y tablas con `load_data.sql`.
 - Se cargaron archivos `.csv` a MySQL utilizando `LOAD DATA INFILE`.
 - Se modelaron todas las entidades del sistema usando **POO en Python**, aplicando:
   - Encapsulamiento
   - Constructores
   - Métodos relevantes para el negocio
-- Se implementó una **prueba unitaria con `pytest`** para validar funcionalidad.
+- Se implementaron **patrones de diseño**:
+  - `Singleton` → para la clase de conexión a la base
+  - `Factory Method` → para instanciar modelos desde datos tabulares
+- Se agregó un método que permite ejecutar consultas SQL y devuelve los resultados como `pandas.DataFrame`.
+- Se escribieron **pruebas unitarias con `pytest`** para verificar comportamiento de patrones y entidades.
+- Se integró todo en un **Jupyter Notebook** de verificación llamado `verificacion_step_dos.ipynb`.
 
 ---
 
 ## 🗂 Estructura del proyecto
 
 ```
-proyecto_integrador/
+proyecto_integrador_henry/
 │
-├── data/               # Archivos CSV
-├── sql/                # Script SQL para creación y carga de tablas
+├── data/                         # Archivos CSV
+├── docs/                         # Documentación adicional
+├── sql/                          # Script SQL para creación y carga de tablas
 ├── src/
-│   └── models/         # Clases Python por entidad (POO)
-├── tests/              # Pruebas unitarias (pytest)
-├── requirements.txt    # Dependencias del entorno
-├── README.md           # Documentación principal
+│   ├── database/                 # Conector Singleton con SQLAlchemy
+│   ├── factories/                # Factory Method
+│   └── models/                   # Clases Python por entidad (POO)
+├── test/                         # Pruebas unitarias con pytest
+├── verificacion_step_dos.ipynb   # Notebook de validación final
+├── requirements.txt              # Dependencias del entorno
 ├── .gitignore
-└── .env                # Variables sensibles (no versionadas)
+└── .env                          # Variables sensibles (no versionadas)
 ```
+
+---
+
+## 📊 Validación final (`verificacion_step_dos.ipynb`)
+
+El notebook de integración muestra:
+
+- ✅ Conexión exitosa a la base
+- 📈 Consulta SQL con salida como `DataFrame`
+- 🏗 Instanciación de entidad usando patrón Factory
+- 🔎 Ejecución de tests con `pytest` mostrando salida en notebook
+- 📅 Mensaje final con timestamp de ejecución
 
 ---
 
 ## 🧠 Justificación técnica
 
-- Uso de **clases por entidad** directamente mapeadas a los CSV.
-- Métodos como `precio_final()`, `nombre_completo()`, `total_con_descuento()` reflejan reglas del negocio.
-- Estructura escalable que permite incorporar análisis avanzados, consultas SQL complejas, visualización de datos o dashboards.
-- Uso de `pytest` para asegurar funcionamiento correcto de la lógica.
+- Se diseñó el sistema con enfoque modular y profesional.
+- Se aplicaron buenas prácticas de arquitectura y patrones de diseño.
+- Se automatizó la validación del sistema mediante notebook ejecutable y pruebas unitarias.
+- Se garantizó la seguridad de las credenciales con `.env` y `.gitignore`.
 
 ---
 
@@ -58,8 +78,8 @@ proyecto_integrador/
    ```bash
    pip install -r requirements.txt
    ```
-4. Cargar los datos desde `load_data.sql` usando MySQL Workbench.
-5. Ejecutar los tests:
+4. Cargar los datos desde `sql/load_data.sql` usando MySQL Workbench.
+5. Ejecutar el notebook `verificacion_step_dos.ipynb` o lanzar pruebas con:
    ```bash
    pytest
    ```
