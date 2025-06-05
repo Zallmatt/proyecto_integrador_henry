@@ -1,0 +1,68 @@
+
+DOCUMENTACIÓN - SEGUNDO AVANCE DEL PROYECTO INTEGRADOR
+========================================
+
+Este archivo resume la integración de todos los elementos desarrollados en el segundo avance del Proyecto Integrador.
+
+Objetivo general:
+Demostrar mediante un Jupyter Notebook que el sistema es funcional, modular y testeado, cubriendo desde la conexión a base de datos hasta la ejecución de pruebas unitarias.
+
+----------------------------------------
+
+CONEXIÓN EXITOSA A LA BASE DE DATOS
+----------------------------------------
+Se utilizó la clase "DatabaseConnector" (patrón Singleton) para conectarse a MySQL utilizando SQLAlchemy. 
+La conexión fue verificada exitosamente en el notebook mediante:
+
+"python
+db = DatabaseConnector()
+session = db.get_session()
+"
+
+----------------------------------------
+
+RESULTADOS DE LAS QUERIES
+----------------------------------------
+Se utilizó el método "run_query()" para ejecutar consultas SQL y formatear los resultados en un "DataFrame" de pandas.
+
+Ejemplo en el notebook:
+"python
+df = db.run_query("SELECT * FROM sales LIMIT 5")
+df.head()
+"
+
+----------------------------------------
+
+USO DE PATRONES DE DISEÑO
+----------------------------------------
+- Singleton → Para la clase "DatabaseConnector", asegurando una única conexión activa en toda la aplicación.
+- Factory Method → En "ModelFactory", para crear instancias como "Customer", "Product", etc. a partir de filas (dicts).
+
+Ejemplo en el notebook:
+"python
+customer = ModelFactory.create_customer({...})
+"
+
+----------------------------------------
+
+EJECUCIÓN DE PRUEBAS UNITARIAS
+----------------------------------------
+Se ejecutaron los tests definidos en la carpeta "test/" mediante Pytest, directamente desde el notebook:
+
+"bash
+!pytest -q test/ --tb=short
+"
+
+Resultado: **100% de tests pasados**.
+
+----------------------------------------
+
+CONCLUSIÓN
+----------------------------------------
+Todos los componentes del sistema fueron integrados en un Jupyter Notebook, con outputs visibles, mostrando:
+- Arquitectura basada en buenas prácticas.
+- Correcta conexión y consulta a la base de datos.
+- Implementación y uso efectivo de patrones de diseño.
+- Cobertura de tests y estabilidad general del sistema.
+
+El archivo entregado ("integracion_final.ipynb") representa una integración sólida y demostrable del sistema.

@@ -1,0 +1,47 @@
+
+DOCUMENTACIÓN - PATRONES DE DISEÑO IMPLEMENTADOS
+================================================
+
+PATRÓN 1: SINGLETON
+----------------------
+Ubicación: src/database/db_connector.py
+
+¿Qué resuelve?
+Este patrón se utilizó para garantizar que la conexión a la base de datos MySQL se maneje desde una única instancia durante todo el ciclo de vida de la aplicación. Esto evita la creación de múltiples conexiones innecesarias que puedan consumir recursos o provocar errores de concurrencia.
+
+En este caso se utilizó SQLAlchemy como motor de conexión, y el Singleton encapsula tanto el "engine" como la "session", centralizando su uso.
+
+Justificación técnica:
+- Asegura eficiencia y control en el acceso a la base de datos.
+- Centraliza la lógica de conexión mediante SQLAlchemy, facilitando mantenimiento y debugging.
+- Compatible con ORM, consultas raw, y uso escalable en análisis o ETL.
+- Ideal en contextos donde múltiples módulos acceden a la misma base de datos (como tests, transformaciones, carga de datos, etc.).
+
+---
+
+PATRÓN 2: FACTORY METHOD
+---------------------------
+Ubicación: src/factories/model_factory.py
+
+¿Qué resuelve?
+Este patrón permite crear instancias de clases ("Customer", "Product", "Sale", etc.) a partir de filas de datos (provenientes de CSV o SQL), sin acoplar la lógica de construcción directamente al resto del código.
+
+Justificación técnica:
+- Desacopla el proceso de construcción de objetos desde su uso, siguiendo principios SOLID.
+- Permite transformar fácilmente estructuras de datos externas en objetos del dominio del negocio.
+- Facilita testing: cada método Factory puede probarse de forma aislada.
+- Escalable: si mañana se cambian nombres de columnas o se lee desde JSON o una API, solo se ajusta el factory.
+
+Clases cubiertas:
+- Customer → "create_customer()"
+- Product → "create_product()"
+- Sale → "create_sale()"
+- Employee → "create_employee()"
+- Category → "create_category()"
+- City → "create_city()"
+- Country → "create_country()"
+
+---
+
+Conclusión:
+La incorporación de estos dos patrones eleva la calidad arquitectónica del sistema, lo hace más robusto, modular y preparado para escalar, facilitando la lectura, el mantenimiento y futuras integraciones.
