@@ -1,91 +1,100 @@
+# Proyecto Integrador - Sistema de Análisis de Ventas
 
-# 🛠 Proyecto Integrador - Sistema de Análisis de Ventas
-
-Este proyecto simula el trabajo de un ingeniero de datos junior que se une a una startup para desarrollar un sistema robusto de análisis de ventas a partir de archivos CSV y una base de datos relacional.
-
----
-
-## ✅ ¿Qué se hizo?
-
-- Se creó un entorno virtual y archivo `requirements.txt`.
-- Se diseñó una estructura profesional de carpetas (`src/`, `data/`, `sql/`, `tests/`, `docs/`).
-- Se creó la base de datos y tablas con `load_data.sql`.
-- Se cargaron archivos `.csv` a MySQL utilizando `LOAD DATA INFILE`.
-- Se modelaron todas las entidades del sistema usando **POO en Python**, aplicando:
-  - Encapsulamiento
-  - Constructores
-  - Métodos relevantes para el negocio
-- Se implementaron **patrones de diseño**:
-  - `Singleton` → para la clase de conexión a la base
-  - `Factory Method` → para instanciar modelos desde datos tabulares
-- Se agregó un método que permite ejecutar consultas SQL y devuelve los resultados como `pandas.DataFrame`.
-- Se escribieron **pruebas unitarias con `pytest`** para verificar comportamiento de patrones y entidades.
-- Se integró todo en un **Jupyter Notebook** de verificación llamado `verificacion_step_dos.ipynb`.
+Este proyecto simula el trabajo de un ingeniero de datos junior en una empresa de retail. El objetivo es construir una solución completa de análisis de ventas, desde el modelado de datos hasta consultas avanzadas en SQL, integrando todo con Python de forma profesional y segura.
 
 ---
 
-## 🗂 Estructura del proyecto
+## ¿Qué se hizo?
+
+### Etapa 1: Fundaciones del sistema
+
+- Se creó un entorno virtual y se registraron las dependencias en `requirements.txt`.
+- Se diseñó una estructura profesional de carpetas (`src/`, `data/`, `sql/`, `tests/`, etc.).
+- Se creó la base de datos `grocery_sales` con sus tablas correspondientes en MySQL.
+- Se cargaron datos reales desde archivos `.csv` usando `LOAD DATA INFILE`.
+- Se implementó una arquitectura orientada a objetos:
+- Cada tabla tiene su clase Python con encapsulamiento, constructor y métodos personalizados.
+- Se crearon tests unitarios con `pytest`.
+
+### Etapa 2: Conexión y diseño con patrones
+
+- Se implementó el patrón Singleton en `DatabaseConnector` para garantizar una única conexión a la base de datos.
+- Se implementó el patrón Factory para construir instancias de entidades desde estructuras externas (como filas de CSV).
+- Se agregó un método para ejecutar consultas SQL desde Python y devolver los resultados como `pandas.DataFrame`.
+- Se integraron pruebas y validaciones dentro de un **notebook ejecutable**.
+
+### Etapa 3: Consultas avanzadas y automatización SQL
+
+- Se crearon **consultas SQL avanzadas** usando:
+  - CTE (Common Table Expressions)
+  - Funciones ventana como `RANK()` y `ROW_NUMBER()`
+- Se construyeron **objetos SQL**:
+  - Vista enriquecida de ventas (`vista_ventas_enriquecidas`)
+  - Procedimiento almacenado (`insertar_venta_simulada`) para insertar ventas desde Python
+- Todo el sistema se ejecuta y documenta en un único Jupyter Notebook.
+
+---
+
+## Estructura del proyecto
 
 ```
 proyecto_integrador_henry/
 │
-├── data/                         # Archivos CSV
-├── docs/                         # Documentación adicional
-├── sql/                          # Script SQL para creación y carga de tablas
+├── data/                      # Archivos CSV de entrada
+├── docs/                      # Documentación técnica (.txt)
+├── sql/                       # Script SQL para creación de tablas y objetos
 ├── src/
-│   ├── database/                 # Conector Singleton con SQLAlchemy
-│   ├── factories/                # Factory Method
-│   └── models/                   # Clases Python por entidad (POO)
-├── test/                         # Pruebas unitarias con pytest
-├── verificacion_step_dos.ipynb   # Notebook de validación final
-├── requirements.txt              # Dependencias del entorno
+│   ├── database/              # Conexión a MySQL (Singleton)
+│   ├── factories/             # Lógica Factory para entidades
+│   └── models/                # Clases Python (POO)
+├── test/                      # Tests con Pytest
+├── venv/                      # Entorno virtual (ignorado)
+├── .env                       # Credenciales (no versionado)
 ├── .gitignore
-└── .env                          # Variables sensibles (no versionadas)
+├── requirements.txt
+├── proyecto_integrador_henry.ipynb   # Notebook con todas las integraciones
+└── README.md
 ```
 
 ---
 
-## 📊 Validación final (`verificacion_step_dos.ipynb`)
+## Justificación técnica
 
-El notebook de integración muestra:
-
-- ✅ Conexión exitosa a la base
-- 📈 Consulta SQL con salida como `DataFrame`
-- 🏗 Instanciación de entidad usando patrón Factory
-- 🔎 Ejecución de tests con `pytest` mostrando salida en notebook
-- 📅 Mensaje final con timestamp de ejecución
+- **Patrón Singleton**: evita múltiples conexiones innecesarias a la base.
+- **Patrón Factory**: desacopla el proceso de construcción de entidades.
+- **Funciones SQL avanzadas**: facilitan reportes rankeados, ordenados o contextualizados.
+- **Procedimiento almacenado**: automatiza inserciones y reduce errores manuales.
+- **Vista SQL**: concentra datos enriquecidos y listos para análisis.
 
 ---
 
-## 🧠 Justificación técnica
+## Cómo ejecutar
 
-- Se diseñó el sistema con enfoque modular y profesional.
-- Se aplicaron buenas prácticas de arquitectura y patrones de diseño.
-- Se automatizó la validación del sistema mediante notebook ejecutable y pruebas unitarias.
-- Se garantizó la seguridad de las credenciales con `.env` y `.gitignore`.
+1. Clonar el repositorio.
+2. Crear entorno virtual:
 
----
+```bash
+python -m venv venv
+source venv/bin/activate   # o venv\Scripts\activate en Windows
+pip install -r requirements.txt
+```
 
-## 🚀 Cómo ejecutar
+3. Cargar la base de datos con el script `sql/load_data.sql` desde MySQL Workbench.
+4. Verificar el archivo `.env` con tus credenciales de conexión.
+5. Ejecutar el notebook:
 
-1. Clonar el repositorio y navegar al proyecto.
-2. Crear y activar un entorno virtual:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # o venv\Scripts\activate en Windows
-   ```
-3. Instalar dependencias:
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. Cargar los datos desde `sql/load_data.sql` usando MySQL Workbench.
-5. Ejecutar el notebook `verificacion_step_dos.ipynb` o lanzar pruebas con:
-   ```bash
-   pytest
-   ```
+```bash
+jupyter notebook analisis_ventas_completo.ipynb
+```
+
+6. Ejecutar tests:
+
+```bash
+pytest
+```
 
 ---
 
 ## 📬 Autor
 
-Proyecto desarrollado en el marco del bootcamp Henry | Data Engineering.
+Desarrollado por Matias Zalazar, en el marco del bootcamp Henry | Data Engineering.

@@ -65,4 +65,4 @@ Todos los componentes del sistema fueron integrados en un Jupyter Notebook, con 
 - Implementación y uso efectivo de patrones de diseño.
 - Cobertura de tests y estabilidad general del sistema.
 
-El archivo entregado ("integracion_final.ipynb") representa una integración sólida y demostrable del sistema.
+El archivo entregado ("analisis_ventas_completo.ipynb") representa una integración sólida y demostrable del sistema.

@@ -1,0 +1,48 @@
+DOCUMENTACIÓN - AVANCE 3: CONSULTAS Y OBJETOS SQL
+=================================================
+-------------------------------------------------
+CONSULTAS SQL AVANZADAS
+-------------------------------------------------
+
+Se crearon y ejecutaron desde Python (vía SQLAlchemy) dos consultas avanzadas:
+
+1.CTE (Common Table Expression):
+   - Se utilizó "WITH" para estructurar subconsultas complejas de forma legible.
+   - Permite separar lógica intermedia (como subtotales o filtros intermedios).
+
+2.Funciones de ventana:
+   - Se aplicó "ROW_NUMBER()" para obtener el ranking de ventas o productos por cliente o categoría.
+   - Permite obtener métricas acumuladas, ranking sin agrupar datos.
+
+Justificación:
+- Estas consultas son fundamentales para análisis exploratorios de ventas y detección de patrones sin perder granularidad.
+
+-------------------------------------------------
+OBJETOS SQL IMPLEMENTADOS
+-------------------------------------------------
+
+1.Vista: "vista_ventas_enriquecidas"
+   - Une información de "sales", "customers", "employees" y "products".
+   - Simplifica reportes y evita escribir múltiples JOINs repetidamente.
+
+2.Procedimiento almacenado: "insertar_venta_simulada"
+   - Permite registrar una venta ficticia con parámetros desde Python.
+   - Fue invocado desde Python usando "callproc()" (vía PyMySQL).
+
+Justificación:
+- Las vistas permiten encapsular consultas complejas reutilizables.
+- Los procedimientos centralizan lógica de negocio, mejoran mantenibilidad y reducen errores.
+
+-------------------------------------------------
+INTEGRACIÓN EN NOTEBOOK
+-------------------------------------------------
+
+Archivo: "analisis_ventas_completo.ipynb"
+
+- Muestra:
+  - Conexión exitosa a MySQL.
+  - Ejecución de queries avanzadas y objetos SQL.
+  - Uso del patrón Singleton (conexión) y Factory (modelado).
+  - Ejecución de pruebas unitarias con "pytest".
+
+Todo el flujo fue documentado con comentarios e interpretaciones de cada paso, cumpliendo los criterios de evaluación del avance 3.
