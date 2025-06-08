@@ -1,11 +1,25 @@
-#Entorno virtual
-*venv
+# Entorno virtual
+venv/
 
 #Archivos generados por python
 __pycache__/
 *.pyc
 
-#Archivos de entorno
-*.env
+# Configuración de entorno
+.env
 
+# Archivos temporales de pytest y cobertura
+.coverage
+.pytest_cache/
+coverage.xml
+htmlcov/
 
+# Archivos de Jupyter generados
+*.ipynb_checkpoints/
+
+# Datos sensibles o grandes
+data/*.csv
+
+# Archivos temporales del sistema o editores
+*.DS_Store
+*.vscode/

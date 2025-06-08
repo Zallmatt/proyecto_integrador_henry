@@ -68,6 +68,13 @@ proyecto_integrador_henry/
 
 ---
 
+### Cobertura de código
+
+Se utilizaron pruebas automáticas con `pytest` y `pytest-cov`. La cobertura total alcanzó un **85%**, cumpliendo con los criterios de calidad y documentación.
+
+![Coverage Report](docs\image.png)
+
+
 ## Cómo ejecutar
 
 1. Clonar el repositorio.
